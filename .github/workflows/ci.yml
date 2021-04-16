@@ -1,0 +1,29 @@
+  name: wasm-lab
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'src/**'
+    - 'Cargo.toml'
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'src/**'
+    - 'Cargo.toml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: rustup target add wasm32-wasi   
+    
+    - uses: actions/checkout@v2
+    - name: Build
+      run: cargo build --verbose --target=wasm32-wasi
+      
+    - uses: actions/checkout@v2
+    - name: Test
+      run: cargo test --verbose
