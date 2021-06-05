@@ -1,4 +1,4 @@
-  name: wasm-lab
+name: wasm-lab
 on:
   push:
     branches: [ main ]
